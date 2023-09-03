@@ -27,21 +27,11 @@
         </div>
         <div>
             <label for="zipcode">郵便番号</label>
-            @if (is_null($customer->message))
-                <input type="number" id="zipcode" name="zipcode" value="{{ old('zipcode',$customer->results[0]->zipcode) }}">
-            @else
-                <input type="number" id="zipcode" name="zipcode" value="{{ old('zipcode')}}">
-            @endif
-            
+            <input type="number" id="zipcode" name="zipcode" value="{{ old('zipcode', $customer->api_zipcode) }}">
         </div>
         <div>
             <label for="address">住所</label>
-            @if (is_null($customer->message))
-                <textarea name="address" id="address" cols="30" rows="5">{{ old('address',$customer->results[0]->address1. $customer->results[0]->address2. $customer->results[0]->address3) }}</textarea>
-            @else
-                <textarea name="address" id="address" cols="30" rows="5">{{ old('address') }}</textarea>
-            @endif
-            
+            <textarea name="address" id="address" cols="30" rows="5">{{ old('address', $customer->api_address) }}</textarea>
         </div>
         <div>
             <label for="phone">電話番号</label>

@@ -32,8 +32,6 @@ class CustomerController extends Controller
 
     public function address(Request $request)
     {
-
-
         $url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
         $method = 'GET';
 
@@ -48,9 +46,15 @@ class CustomerController extends Controller
         } catch (\Exception $e) {
             $customer = null;
         }
+
+        if (is_null($customer->message)) {
+            $customer->api_zipcode = $customer->results[0]->zipcode;
+            $customer->api_address = $customer->results[0]->address1 . $customer->results[0]->address2 . $customer->results[0]->address3;
+        }else{
+            $customer->api_zipcode = null;
+            $customer->api_address = null;
+        }
         
-
-
         return view('customers.address', compact('customer'));
     }
 
@@ -77,7 +81,6 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         return view('customers.edit', compact('customer'));
-    
     }
 
     public function update(CustomerRequest $request, $id)
