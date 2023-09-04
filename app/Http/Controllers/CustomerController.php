@@ -48,14 +48,14 @@ class CustomerController extends Controller
         }
 
         if (is_null($customer->message)) {
-            $customer->api_zipcode = $customer->results[0]->zipcode;
-            $customer->api_address = $customer->results[0]->address1 . $customer->results[0]->address2 . $customer->results[0]->address3;
-        }else{
-            $customer->api_zipcode = null;
-            $customer->api_address = null;
+            $api_zipcode = $customer->results[0]->zipcode;
+            $api_address = $customer->results[0]->address1 . $customer->results[0]->address2 . $customer->results[0]->address3;
+        } else {
+            $api_zipcode = null;
+            $api_address = null;
         }
-        
-        return view('customers.address', compact('customer'));
+
+        return view('customers.address', compact('api_address', 'api_zipcode'));
     }
 
     public function store(CustomerRequest $request)

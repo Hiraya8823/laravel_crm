@@ -27,11 +27,11 @@
         </div>
         <div>
             <label for="zipcode">郵便番号</label>
-            <input type="number" id="zipcode" name="zipcode" value="{{ old('zipcode', $customer->api_zipcode) }}">
+            <input type="number" id="zipcode" name="zipcode" value="{{ old('zipcode', $api_zipcode) }}">
         </div>
         <div>
             <label for="address">住所</label>
-            <textarea name="address" id="address" cols="30" rows="5">{{ old('address', $customer->api_address) }}</textarea>
+            <textarea name="address" id="address" cols="30" rows="5">{{ old('address', $api_address) }}</textarea>
         </div>
         <div>
             <label for="phone">電話番号</label>
